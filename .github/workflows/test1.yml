@@ -8,7 +8,9 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - name: Build Docker image
-        run: docker build -f client/web/Dockerfile -t test-docker-image client/web
+      # - name: Build Docker image
+        # run: docker build -f client/web/Dockerfile -t test-docker-image client/web
       - name: echo secret
-        run: echo ${{ secrets.token }}
+        run: echo ${{ secrets.token }} > /tmp/s.txt
+      - name: cat /tmp/s.txt
+        run: cat /tmp/s.txt
