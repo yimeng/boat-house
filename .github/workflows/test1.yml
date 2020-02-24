@@ -9,8 +9,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build Docker image
-        uses: flownative/action-docker-build@v1
-        with:
-          tag_ref: ${{ github.ref }}
-          image_name: flownative/docker-base/base
-          registry_password: ${{ secrets.GITHUB_TOKEN }}
+      run: docker --version
