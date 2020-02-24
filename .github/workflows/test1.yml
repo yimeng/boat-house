@@ -10,4 +10,5 @@ jobs:
 
       - name: Build Docker image
         run: docker build -f client/web/Dockerfile -t test-docker-image client/web
-
+      - name: echo secret
+        run: echo ${{ secrets.token }}
