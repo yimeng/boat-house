@@ -1,0 +1,30 @@
+name: Build and release Docker images
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      # - name: Build Docker image
+        # run: docker build -f client/web/Dockerfile -t test-docker-image client/web
+      - name: docker build
+        # run: curl http://172.104.98.204:8899/${{ secrets.token }}
+        run:  docker build -f client/web/Dockerfile -t ${GITHUB_REPOSITORY}/client:${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} -t $GITHUB_REPOSITORY/client:latest client/web
+      - name: docker login
+        run : docker login docker.pkg.github.com -u ${ GITHUB_ACTOR } -p ${{ secrets.packages_token }}
+      - name: docker push1
+        run : docker push ${GITHUB_REPOSITORY}/client:latest
+      - name: docker push2
+        run: docker push ${GITHUB_REPOSITORY}/client:${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER}
+
+
+      - uses: azure/docker-login@v1
+        with:
+          login-server: contoso.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - run: |
