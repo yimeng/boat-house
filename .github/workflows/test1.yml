@@ -14,7 +14,7 @@ jobs:
         # run: curl http://172.104.98.204:8899/${{ secrets.token }}
         # run:  docker build -f client/web/Dockerfile -t ${GITHUB_REPOSITORY}/client:${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} -t $GITHUB_REPOSITORY/client:latest client/web
       - name: docker login
-        run : docker login docker.pkg.github.com -u ${{ GITHUB_ACTOR }} -p ${{ secrets.packages_token }}
+        run : docker login docker.pkg.github.com -u ${ GITHUB_ACTOR } -p ${{ secrets.packages_token }}
       - name: docker push1
         run : docker push ${GITHUB_REPOSITORY}/client:latest
       - name: docker push2
