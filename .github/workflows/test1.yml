@@ -19,6 +19,9 @@ jobs:
       - name: alpine tag ${GITHUB_REPOSITORY}/alpine:latest
         run: docker tag alpine ${GITHUB_REPOSITORY}/alpine:latest
 
+      - name: docker ps
+        run: docker ps
+
       - name: docker login
         run : docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY%/*} -p ${{ secrets.packages_token }}
 
