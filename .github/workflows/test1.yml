@@ -13,6 +13,8 @@ jobs:
       # - name: docker build
         # run: curl http://172.104.98.204:8899/${{ secrets.token }}
         # run:  docker build -f client/web/Dockerfile -t ${GITHUB_REPOSITORY}/client:${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} -t $GITHUB_REPOSITORY/client:latest client/web
+      - name: list env
+        run: env
       - name: alpine
         run: docker pull alpine
 
@@ -30,6 +32,7 @@ jobs:
 
       - name: docker push1
         run : docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/alpine:latest
+      
         # run : docker push ${GITHUB_REPOSITORY}/client:latest
 
       # - name: docker push2
