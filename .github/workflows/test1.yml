@@ -15,12 +15,16 @@ jobs:
         # run:  docker build -f client/web/Dockerfile -t ${GITHUB_REPOSITORY}/client:${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} -t $GITHUB_REPOSITORY/client:latest client/web
       - name: alpine
         run: docker pull alpine
+
       - name: alpine tag ${GITHUB_REPOSITORY}/alpine:latest
-        run: docker tags alpine 
-      - name: docker login1123
+        run: docker tag alpine ${GITHUB_REPOSITORY}/alpine:latest
+
+      - name: docker login
         run : docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY%/*} -p ${{ secrets.packages_token }}
+
       - name: docker push1
-        # run : docker push ${GITHUB_REPOSITORY}/client:latest
         run : docker push ${GITHUB_REPOSITORY}/alpine:latest
+        # run : docker push ${GITHUB_REPOSITORY}/client:latest
+
       # - name: docker push2
         # run: docker push ${GITHUB_REPOSITORY}/client:${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER}
