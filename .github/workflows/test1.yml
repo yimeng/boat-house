@@ -16,8 +16,8 @@ jobs:
       - name: alpine
         run: docker pull alpine
 
-      - name: docker ps
-        run: sudo docker ps
+      - name: docker images
+        run: docker images
 
       - name: alpine tag ${GITHUB_REPOSITORY}/alpine:latest
         run: docker tag alpine ${GITHUB_REPOSITORY}/alpine:latest
