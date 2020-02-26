@@ -16,11 +16,11 @@ jobs:
       - name: alpine
         run: docker pull alpine
 
-      - name: alpine tag ${GITHUB_REPOSITORY}/alpine:latest
-        run: docker tag alpine ${GITHUB_REPOSITORY}/alpine:latest
-
       - name: docker ps
         run: sudo docker ps
+
+      - name: alpine tag ${GITHUB_REPOSITORY}/alpine:latest
+        run: docker tag alpine ${GITHUB_REPOSITORY}/alpine:latest
 
       - name: docker login
         run : docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY%/*} -p ${{ secrets.packages_token }}
