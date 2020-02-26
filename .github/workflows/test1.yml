@@ -20,7 +20,7 @@ jobs:
         run: docker images
 
       - name: alpine tag ${GITHUB_REPOSITORY}/alpine:latest
-        run: docker tag alpine "docker.pkg.github.com"${GITHUB_REPOSITORY}/alpine:latest
+        run: docker tag alpine docker.pkg.github.com/${GITHUB_REPOSITORY}/alpine:latest
 
       - name: docker images tag
         run: docker images
@@ -29,7 +29,7 @@ jobs:
         run : docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY%/*} -p ${{ secrets.packages_token }}
 
       - name: docker push1
-        run : docker push "docker.pkg.github.com"${GITHUB_REPOSITORY}/alpine:latest
+        run : docker push docker.pkg.github.com/${GITHUB_REPOSITORY}/alpine:latest
         # run : docker push ${GITHUB_REPOSITORY}/client:latest
 
       # - name: docker push2
