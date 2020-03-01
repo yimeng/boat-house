@@ -11,10 +11,10 @@ jobs:
       - name: list env
         run: env
 
-      - name: docker build 
+      - name: docker build statistics-service/api
         run: docker build -f statistics-service/api/Dockerfile -t docker.pkg.github.com/${GITHUB_REPOSITORY}/statistics_service_api:${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} -t docker.pkg.github.com/${GITHUB_REPOSITORY}/statistics_service_api:latest statistics-service/api 
 
-      - name: docker build client
+      - name: docker build statistics-service/worker
         run: docker build -f statistics-service/worker/Dockerfile -t docker.pkg.github.com/${GITHUB_REPOSITORY}/statistics_service_worker:${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} -t docker.pkg.github.com/${GITHUB_REPOSITORY}/statistics_service_worker:latest statistics-service/worker
 
       - name: docker images 
